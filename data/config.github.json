@@ -4,7 +4,7 @@
     "provider": "deepseek",
     "model": "deepseek-chat",
     "base_url": "https://api.deepseek.com",
-    "api_key_env": "sk-c83988d33e9a45ca897e6f81e0884767",
+    "api_key_env": "DEEPSEEK_API_KEY"
     "temperature": 0.3,
     "max_tokens": 8192,
     "throttle_sec": 1,

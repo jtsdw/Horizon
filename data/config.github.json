@@ -28,6 +28,12 @@
       },
       {
         "type": "repo_releases",
+        "owner": "NVIDIA",
+        "repo": "TensorRT-LLM",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
         "owner": "triton-lang",
         "repo": "triton",
         "enabled": true
@@ -37,46 +43,58 @@
         "owner": "huggingface",
         "repo": "transformers",
         "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "huggingface",
+        "repo": "text-generation-inference",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "ggerganov",
+        "repo": "llama.cpp",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "Dao-AILab",
+        "repo": "flash-attention",
+        "enabled": true
       }
     ],
     "hackernews": {
       "enabled": true,
-      "fetch_top_stories": 30,
-      "min_score": 100
+      "fetch_top_stories": 15,
+      "min_score": 250
     },
     "reddit": {
       "enabled": true,
       "subreddits": [
         {
-          "subreddit": "MachineLearning",
-          "enabled": true,
-          "sort": "hot",
-          "time_filter": "day",
-          "fetch_limit": 10,
-          "min_score": 50
-        },
-        {
           "subreddit": "LocalLLaMA",
           "enabled": true,
           "sort": "hot",
           "time_filter": "day",
-          "fetch_limit": 10,
-          "min_score": 30
+          "fetch_limit": 8,
+          "min_score": 50
+        },
+        {
+          "subreddit": "MachineLearning",
+          "enabled": true,
+          "sort": "hot",
+          "time_filter": "day",
+          "fetch_limit": 5,
+          "min_score": 100
         }
       ],
       "users": [],
-      "fetch_comments": 5
+      "fetch_comments": 3
     },
     "rss": [
       {
         "name": "OpenAI Blog",
         "url": "https://openai.com/blog/rss.xml",
-        "enabled": true,
-        "category": "ai-official"
-      },
-      {
-        "name": "Anthropic Blog",
-        "url": "https://www.anthropic.com/feed.xml",
         "enabled": true,
         "category": "ai-official"
       },
@@ -90,26 +108,75 @@
         "name": "Hugging Face Blog",
         "url": "https://huggingface.co/blog/feed.xml",
         "enabled": true,
-        "category": "ai-tools"
+        "category": "llm-infra"
       },
       {
-        "name": "arXiv cs.CL",
-        "url": "https://export.arxiv.org/rss/cs.CL",
+        "name": "arXiv LLM Inference",
+        "url": "https://export.arxiv.org/api/query?search_query=all:%22LLM%20inference%22+OR+all:%22LLM%20serving%22+OR+all:%22inference%20serving%22+OR+all:%22vLLM%22+OR+all:%22SGLang%22&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending",
         "enabled": true,
         "category": "research"
       },
       {
-        "name": "arXiv cs.LG",
-        "url": "https://export.arxiv.org/rss/cs.LG",
+        "name": "arXiv Speculative Decoding",
+        "url": "https://export.arxiv.org/api/query?search_query=all:%22speculative%20decoding%22+OR+all:%22speculative%20inference%22+OR+all:%22draft%20model%22+OR+all:%22tree%20decoding%22&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending",
+        "enabled": true,
+        "category": "research"
+      },
+      {
+        "name": "arXiv Agent Infra",
+        "url": "https://export.arxiv.org/api/query?search_query=all:%22LLM%20agent%22+OR+all:%22agentic%20systems%22+OR+all:%22tool%20calling%22+OR+all:%22workflow%20automation%22+OR+all:%22agent%20planning%22&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending",
+        "enabled": true,
+        "category": "research"
+      },
+      {
+        "name": "arXiv Efficient MLLM",
+        "url": "https://export.arxiv.org/api/query?search_query=all:%22multimodal%20large%20language%20model%22+AND+(all:%22efficient%22+OR+all:%22token%20reduction%22+OR+all:%22KV%20cache%22+OR+all:%22quantization%22+OR+all:%22pruning%22)&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending",
         "enabled": true,
         "category": "research"
       }
-    ]
+    ],
+    "ossinsight": {
+      "enabled": true,
+      "period": "past_24_hours",
+      "languages": ["Python", "C++", "Rust", "Jupyter Notebook"],
+      "keywords": [
+        "llm",
+        "inference",
+        "serving",
+        "vllm",
+        "sglang",
+        "tensorrt-llm",
+        "speculative",
+        "decoding",
+        "kv cache",
+        "quantization",
+        "pruning",
+        "multimodal",
+        "agent",
+        "tool calling"
+      ],
+      "min_stars": 20,
+      "max_items": 20
+    }
   },
   "filtering": {
-    "ai_score_threshold": 7.0,
+    "ai_score_threshold": 8.0,
     "time_window_hours": 24,
-    "max_items": 20
+    "max_items": 8,
+    "category_groups": {
+      "research": {
+        "name": "Research",
+        "limit": 5,
+        "categories": ["research"]
+      },
+      "llm_infra": {
+        "name": "LLM Infra",
+        "limit": 3,
+        "categories": ["llm-infra", "ai-official"]
+      }
+    },
+    "default_group": "other",
+    "default_group_limit": 2
   },
   "webhook": {
     "enabled": false,
